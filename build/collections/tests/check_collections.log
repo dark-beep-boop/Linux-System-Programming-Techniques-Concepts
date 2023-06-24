@@ -1,0 +1,5 @@
+Running suite(s): Linked list
+ Doubly linked list
+ Binary tree
+100%: Checks: 62, Failures: 0, Errors: 0
+PASS check_collections (exit status: 0)
