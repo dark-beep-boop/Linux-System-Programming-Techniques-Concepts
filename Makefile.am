@@ -1,2 +1,2 @@
-SUBDIRS = collections src
+SUBDIRS = task1
 ACLOCAL_AMFLAGS = -I m4
