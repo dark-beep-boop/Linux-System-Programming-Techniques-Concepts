@@ -136,5 +136,5 @@ emp_print_contents(gldll_node_t *node)
 {
   assert(node);
 
-  emp_print((emp_t *)(node - offset_of(emp_t, glnode)));
+  emp_print(container_of(node, emp_t, glnode));
 }
