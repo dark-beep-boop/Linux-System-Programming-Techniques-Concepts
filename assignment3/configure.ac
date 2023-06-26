@@ -12,5 +12,5 @@ AC_CHECK_HEADERS([stdlib.h])
 AC_FUNC_MALLOC
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_FILES([Makefile src/Makefile])
-AC_CONFIG_SUBDIRS([collections])
+AC_CONFIG_SUBDIRS([glcollections])
 AC_OUTPUT

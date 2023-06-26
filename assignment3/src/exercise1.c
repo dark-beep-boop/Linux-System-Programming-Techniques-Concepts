@@ -1,37 +1,30 @@
+#include "defines.h"
+#include "emp.h"
+#include "gldll.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-struct emp
+int
+main(void)
 {
-  char name[30];
-  unsigned int salary;
-  char designation[30];
-  unsigned int emp_id;
-  gldll_node_t glnode;
-};
-typedef struct emp emp_t;
+  int retval = EXIT_FAILURE;
+  emp_t *emp = NULL;
 
-/*Function to print employee details*/
-void
-print_employee_info(emp_t *emp)
-{
-  printf("Employee name = %s\n", emp->name);
-  printf("salary = %u\n", emp->salary);
-  printf("designation = %s\n", emp->designation);
-  printf("emp_id = %u\n", emp->emp_id);
-}
+  /* Creating one employee object */
+  TRY_DONE(emp = emp_new(), "Employee creation failed");
+  emp_set_name(emp, "Neha");
+  emp_set_salary(emp, 50000);
+  emp_set_designation(emp, "HR");
+  emp_set_id(emp, 21);
 
-/*Creating one employee object*/
-emp_t *emp = calloc(1, sizeof(emp_t));
-strncpy(emp1->name, "Neha", strlen("Neha"));
-emp1->salary = 50000;
-strncpy(emp1->designation, "HR", strlen("HR"));
-emp1->emp_id = 21;
+  /*Invoking fn to print employee details*/
+  emp_print_contents(&emp->glnode);
 
-/*Invoking fn to print employee details*/
-print_emp_details(&emp->glnode);
+  retval = EXIT_SUCCESS;
 
-/*Implement the below function*/
-void
-print_emp_details(glthread_node_t *glnode)
-{
+done:
+  emp_destroy(emp);
+
+  return retval;
 }
