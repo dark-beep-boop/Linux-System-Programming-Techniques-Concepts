@@ -1,4 +1,5 @@
 #include <assert.h>
+#include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -40,16 +41,30 @@ create_new_node(char *name)
 
 #define ITERATE_NBRS_BEGIN(node, nbrnode)                                      \
   {                                                                            \
-    /*<provide your implementation here>*/
+    size_t _count;                                                             \
+    for (_count = 0, nbrnode = node->nbrs[0]; _count < MAX_NBRS && nbrnode;    \
+         nbrnode = node->nbrs[++_count]) {
 
-#define ITERATE_NBRS_END
-/*<provide your implementation here>*/
+#define ITERATE_NBRS_END                                                       \
+  }                                                                            \
+  }
 
 #define ITERATE_ONE_HOP_NBRS_BEGIN(node, nbrnode)                              \
   {                                                                            \
-    /*<provide your implementation here>*/
+    node_t *_nbrnode = NULL;                                                   \
+    ITERATE_NBRS_BEGIN(node, _nbrnode)                                         \
+    {                                                                          \
+      ITERATE_NBRS_BEGIN(_nbrnode, nbrnode)                                    \
+      {                                                                        \
+        if (nbrnode != node) {
 
-#define ITERATE_ONE_HOP_NBRS_END /*<provide your implementation here>*/
+#define ITERATE_ONE_HOP_NBRS_END                                               \
+  }                                                                            \
+  }                                                                            \
+  ITERATE_NBRS_END                                                             \
+  }                                                                            \
+  ITERATE_NBRS_END                                                             \
+  }
 
 int
 main(int argc, char **argv)

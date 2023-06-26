@@ -88,7 +88,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-bin_PROGRAMS = exercise1$(EXEEXT)
+bin_PROGRAMS = exercise1$(EXEEXT) exercise2q$(EXEEXT)
 subdir = src
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/libtool.m4 \
@@ -111,6 +111,9 @@ AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
+am_exercise2q_OBJECTS = exercise2q.$(OBJEXT)
+exercise2q_OBJECTS = $(am_exercise2q_OBJECTS)
+exercise2q_LDADD = $(LDADD)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -126,7 +129,8 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/../depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/exercise1.Po
+am__depfiles_remade = ./$(DEPDIR)/exercise1.Po \
+	./$(DEPDIR)/exercise2q.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -146,8 +150,8 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(exercise1_SOURCES)
-DIST_SOURCES = $(exercise1_SOURCES)
+SOURCES = $(exercise1_SOURCES) $(exercise2q_SOURCES)
+DIST_SOURCES = $(exercise1_SOURCES) $(exercise2q_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -291,6 +295,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 exercise1_SOURCES = exercise1.c
+exercise2q_SOURCES = exercise2q.c
 all: all-am
 
 .SUFFIXES:
@@ -378,6 +383,10 @@ exercise1$(EXEEXT): $(exercise1_OBJECTS) $(exercise1_DEPENDENCIES) $(EXTRA_exerc
 	@rm -f exercise1$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(exercise1_OBJECTS) $(exercise1_LDADD) $(LIBS)
 
+exercise2q$(EXEEXT): $(exercise2q_OBJECTS) $(exercise2q_DEPENDENCIES) $(EXTRA_exercise2q_DEPENDENCIES) 
+	@rm -f exercise2q$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(exercise2q_OBJECTS) $(exercise2q_LDADD) $(LIBS)
+
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
 
@@ -385,6 +394,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/exercise1.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/exercise2q.Po@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -547,6 +557,7 @@ clean-am: clean-binPROGRAMS clean-generic clean-libtool mostlyclean-am
 
 distclean: distclean-am
 		-rm -f ./$(DEPDIR)/exercise1.Po
+	-rm -f ./$(DEPDIR)/exercise2q.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -593,6 +604,7 @@ installcheck-am:
 
 maintainer-clean: maintainer-clean-am
 		-rm -f ./$(DEPDIR)/exercise1.Po
+	-rm -f ./$(DEPDIR)/exercise2q.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
