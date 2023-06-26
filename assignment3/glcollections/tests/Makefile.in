@@ -87,8 +87,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-TESTS = check_collections$(EXEEXT)
-check_PROGRAMS = check_collections$(EXEEXT)
+TESTS = check_glcollections$(EXEEXT)
+check_PROGRAMS = check_glcollections$(EXEEXT)
 subdir = tests
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/libtool.m4 \
@@ -102,22 +102,20 @@ mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
-am_check_collections_OBJECTS =  \
-	check_collections-check_collections.$(OBJEXT) \
-	check_collections-ll_suite.$(OBJEXT) \
-	check_collections-dll_suite.$(OBJEXT) \
-	check_collections-bt_suite.$(OBJEXT)
-check_collections_OBJECTS = $(am_check_collections_OBJECTS)
-check_collections_DEPENDENCIES =  \
-	$(top_builddir)/src/libcollections.la
+am_check_glcollections_OBJECTS =  \
+	check_glcollections-check_glcollections.$(OBJEXT) \
+	check_glcollections-gldll_suite.$(OBJEXT)
+check_glcollections_OBJECTS = $(am_check_glcollections_OBJECTS)
+check_glcollections_DEPENDENCIES =  \
+	$(top_builddir)/src/libglcollections.la
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
-check_collections_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
+check_glcollections_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(check_collections_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) \
-	-o $@
+	$(check_glcollections_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -131,12 +129,11 @@ am__v_at_ = $(am__v_at_@AM_DEFAULT_V@)
 am__v_at_0 = @
 am__v_at_1 = 
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
-depcomp = $(SHELL) $(top_srcdir)/depcomp
+depcomp = $(SHELL) $(top_srcdir)/../../depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/check_collections-bt_suite.Po \
-	./$(DEPDIR)/check_collections-check_collections.Po \
-	./$(DEPDIR)/check_collections-dll_suite.Po \
-	./$(DEPDIR)/check_collections-ll_suite.Po
+am__depfiles_remade =  \
+	./$(DEPDIR)/check_glcollections-check_glcollections.Po \
+	./$(DEPDIR)/check_glcollections-gldll_suite.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -156,8 +153,8 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(check_collections_SOURCES)
-DIST_SOURCES = $(check_collections_SOURCES)
+SOURCES = $(check_glcollections_SOURCES)
+DIST_SOURCES = $(check_glcollections_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -368,7 +365,7 @@ RECHECK_LOGS = $(TEST_LOGS)
 AM_RECURSIVE_TARGETS = check recheck
 TEST_SUITE_LOG = test-suite.log
 TEST_EXTENSIONS = @EXEEXT@ .test
-LOG_DRIVER = $(SHELL) $(top_srcdir)/test-driver
+LOG_DRIVER = $(SHELL) $(top_srcdir)/../../test-driver
 LOG_COMPILE = $(LOG_COMPILER) $(AM_LOG_FLAGS) $(LOG_FLAGS)
 am__set_b = \
   case '$@' in \
@@ -383,11 +380,11 @@ am__set_b = \
 am__test_logs1 = $(TESTS:=.log)
 am__test_logs2 = $(am__test_logs1:@EXEEXT@.log=.log)
 TEST_LOGS = $(am__test_logs2:.test.log=.log)
-TEST_LOG_DRIVER = $(SHELL) $(top_srcdir)/test-driver
+TEST_LOG_DRIVER = $(SHELL) $(top_srcdir)/../../test-driver
 TEST_LOG_COMPILE = $(TEST_LOG_COMPILER) $(AM_TEST_LOG_FLAGS) \
 	$(TEST_LOG_FLAGS)
-am__DIST_COMMON = $(srcdir)/Makefile.in $(top_srcdir)/depcomp \
-	$(top_srcdir)/test-driver
+am__DIST_COMMON = $(srcdir)/Makefile.in $(top_srcdir)/../../depcomp \
+	$(top_srcdir)/../../test-driver
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
@@ -510,14 +507,12 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-check_collections_SOURCES = check_collections.c\
-														ll_suite.c ll_suite.h\
-														dll_suite.c dll_suite.h\
-														bt_suite.c bt_suite.h
+check_glcollections_SOURCES = check_glcollections.c\
+														gldll_suite.c gldll_suite.h
 
-check_collections_CPPFLAGS = -I$(top_srcdir)/src
-check_collections_CFLAGS = @CHECK_CFLAGS@
-check_collections_LDADD = $(top_builddir)/src/libcollections.la @CHECK_LIBS@
+check_glcollections_CPPFLAGS = -I$(top_srcdir)/src
+check_glcollections_CFLAGS = @CHECK_CFLAGS@
+check_glcollections_LDADD = $(top_builddir)/src/libglcollections.la @CHECK_LIBS@
 all: all-am
 
 .SUFFIXES:
@@ -561,9 +556,9 @@ clean-checkPROGRAMS:
 	echo " rm -f" $$list; \
 	rm -f $$list
 
-check_collections$(EXEEXT): $(check_collections_OBJECTS) $(check_collections_DEPENDENCIES) $(EXTRA_check_collections_DEPENDENCIES) 
-	@rm -f check_collections$(EXEEXT)
-	$(AM_V_CCLD)$(check_collections_LINK) $(check_collections_OBJECTS) $(check_collections_LDADD) $(LIBS)
+check_glcollections$(EXEEXT): $(check_glcollections_OBJECTS) $(check_glcollections_DEPENDENCIES) $(EXTRA_check_glcollections_DEPENDENCIES) 
+	@rm -f check_glcollections$(EXEEXT)
+	$(AM_V_CCLD)$(check_glcollections_LINK) $(check_glcollections_OBJECTS) $(check_glcollections_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -571,10 +566,8 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/check_collections-bt_suite.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/check_collections-check_collections.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/check_collections-dll_suite.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/check_collections-ll_suite.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/check_glcollections-check_glcollections.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/check_glcollections-gldll_suite.Po@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -603,61 +596,33 @@ am--depfiles: $(am__depfiles_remade)
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
-check_collections-check_collections.o: check_collections.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(check_collections_CPPFLAGS) $(CPPFLAGS) $(check_collections_CFLAGS) $(CFLAGS) -MT check_collections-check_collections.o -MD -MP -MF $(DEPDIR)/check_collections-check_collections.Tpo -c -o check_collections-check_collections.o `test -f 'check_collections.c' || echo '$(srcdir)/'`check_collections.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/check_collections-check_collections.Tpo $(DEPDIR)/check_collections-check_collections.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='check_collections.c' object='check_collections-check_collections.o' libtool=no @AMDEPBACKSLASH@
+check_glcollections-check_glcollections.o: check_glcollections.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(check_glcollections_CPPFLAGS) $(CPPFLAGS) $(check_glcollections_CFLAGS) $(CFLAGS) -MT check_glcollections-check_glcollections.o -MD -MP -MF $(DEPDIR)/check_glcollections-check_glcollections.Tpo -c -o check_glcollections-check_glcollections.o `test -f 'check_glcollections.c' || echo '$(srcdir)/'`check_glcollections.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/check_glcollections-check_glcollections.Tpo $(DEPDIR)/check_glcollections-check_glcollections.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='check_glcollections.c' object='check_glcollections-check_glcollections.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(check_collections_CPPFLAGS) $(CPPFLAGS) $(check_collections_CFLAGS) $(CFLAGS) -c -o check_collections-check_collections.o `test -f 'check_collections.c' || echo '$(srcdir)/'`check_collections.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(check_glcollections_CPPFLAGS) $(CPPFLAGS) $(check_glcollections_CFLAGS) $(CFLAGS) -c -o check_glcollections-check_glcollections.o `test -f 'check_glcollections.c' || echo '$(srcdir)/'`check_glcollections.c
 
-check_collections-check_collections.obj: check_collections.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(check_collections_CPPFLAGS) $(CPPFLAGS) $(check_collections_CFLAGS) $(CFLAGS) -MT check_collections-check_collections.obj -MD -MP -MF $(DEPDIR)/check_collections-check_collections.Tpo -c -o check_collections-check_collections.obj `if test -f 'check_collections.c'; then $(CYGPATH_W) 'check_collections.c'; else $(CYGPATH_W) '$(srcdir)/check_collections.c'; fi`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/check_collections-check_collections.Tpo $(DEPDIR)/check_collections-check_collections.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='check_collections.c' object='check_collections-check_collections.obj' libtool=no @AMDEPBACKSLASH@
+check_glcollections-check_glcollections.obj: check_glcollections.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(check_glcollections_CPPFLAGS) $(CPPFLAGS) $(check_glcollections_CFLAGS) $(CFLAGS) -MT check_glcollections-check_glcollections.obj -MD -MP -MF $(DEPDIR)/check_glcollections-check_glcollections.Tpo -c -o check_glcollections-check_glcollections.obj `if test -f 'check_glcollections.c'; then $(CYGPATH_W) 'check_glcollections.c'; else $(CYGPATH_W) '$(srcdir)/check_glcollections.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/check_glcollections-check_glcollections.Tpo $(DEPDIR)/check_glcollections-check_glcollections.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='check_glcollections.c' object='check_glcollections-check_glcollections.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(check_collections_CPPFLAGS) $(CPPFLAGS) $(check_collections_CFLAGS) $(CFLAGS) -c -o check_collections-check_collections.obj `if test -f 'check_collections.c'; then $(CYGPATH_W) 'check_collections.c'; else $(CYGPATH_W) '$(srcdir)/check_collections.c'; fi`
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(check_glcollections_CPPFLAGS) $(CPPFLAGS) $(check_glcollections_CFLAGS) $(CFLAGS) -c -o check_glcollections-check_glcollections.obj `if test -f 'check_glcollections.c'; then $(CYGPATH_W) 'check_glcollections.c'; else $(CYGPATH_W) '$(srcdir)/check_glcollections.c'; fi`
 
-check_collections-ll_suite.o: ll_suite.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(check_collections_CPPFLAGS) $(CPPFLAGS) $(check_collections_CFLAGS) $(CFLAGS) -MT check_collections-ll_suite.o -MD -MP -MF $(DEPDIR)/check_collections-ll_suite.Tpo -c -o check_collections-ll_suite.o `test -f 'll_suite.c' || echo '$(srcdir)/'`ll_suite.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/check_collections-ll_suite.Tpo $(DEPDIR)/check_collections-ll_suite.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='ll_suite.c' object='check_collections-ll_suite.o' libtool=no @AMDEPBACKSLASH@
+check_glcollections-gldll_suite.o: gldll_suite.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(check_glcollections_CPPFLAGS) $(CPPFLAGS) $(check_glcollections_CFLAGS) $(CFLAGS) -MT check_glcollections-gldll_suite.o -MD -MP -MF $(DEPDIR)/check_glcollections-gldll_suite.Tpo -c -o check_glcollections-gldll_suite.o `test -f 'gldll_suite.c' || echo '$(srcdir)/'`gldll_suite.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/check_glcollections-gldll_suite.Tpo $(DEPDIR)/check_glcollections-gldll_suite.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gldll_suite.c' object='check_glcollections-gldll_suite.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(check_collections_CPPFLAGS) $(CPPFLAGS) $(check_collections_CFLAGS) $(CFLAGS) -c -o check_collections-ll_suite.o `test -f 'll_suite.c' || echo '$(srcdir)/'`ll_suite.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(check_glcollections_CPPFLAGS) $(CPPFLAGS) $(check_glcollections_CFLAGS) $(CFLAGS) -c -o check_glcollections-gldll_suite.o `test -f 'gldll_suite.c' || echo '$(srcdir)/'`gldll_suite.c
 
-check_collections-ll_suite.obj: ll_suite.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(check_collections_CPPFLAGS) $(CPPFLAGS) $(check_collections_CFLAGS) $(CFLAGS) -MT check_collections-ll_suite.obj -MD -MP -MF $(DEPDIR)/check_collections-ll_suite.Tpo -c -o check_collections-ll_suite.obj `if test -f 'll_suite.c'; then $(CYGPATH_W) 'll_suite.c'; else $(CYGPATH_W) '$(srcdir)/ll_suite.c'; fi`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/check_collections-ll_suite.Tpo $(DEPDIR)/check_collections-ll_suite.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='ll_suite.c' object='check_collections-ll_suite.obj' libtool=no @AMDEPBACKSLASH@
+check_glcollections-gldll_suite.obj: gldll_suite.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(check_glcollections_CPPFLAGS) $(CPPFLAGS) $(check_glcollections_CFLAGS) $(CFLAGS) -MT check_glcollections-gldll_suite.obj -MD -MP -MF $(DEPDIR)/check_glcollections-gldll_suite.Tpo -c -o check_glcollections-gldll_suite.obj `if test -f 'gldll_suite.c'; then $(CYGPATH_W) 'gldll_suite.c'; else $(CYGPATH_W) '$(srcdir)/gldll_suite.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/check_glcollections-gldll_suite.Tpo $(DEPDIR)/check_glcollections-gldll_suite.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gldll_suite.c' object='check_glcollections-gldll_suite.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(check_collections_CPPFLAGS) $(CPPFLAGS) $(check_collections_CFLAGS) $(CFLAGS) -c -o check_collections-ll_suite.obj `if test -f 'll_suite.c'; then $(CYGPATH_W) 'll_suite.c'; else $(CYGPATH_W) '$(srcdir)/ll_suite.c'; fi`
-
-check_collections-dll_suite.o: dll_suite.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(check_collections_CPPFLAGS) $(CPPFLAGS) $(check_collections_CFLAGS) $(CFLAGS) -MT check_collections-dll_suite.o -MD -MP -MF $(DEPDIR)/check_collections-dll_suite.Tpo -c -o check_collections-dll_suite.o `test -f 'dll_suite.c' || echo '$(srcdir)/'`dll_suite.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/check_collections-dll_suite.Tpo $(DEPDIR)/check_collections-dll_suite.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='dll_suite.c' object='check_collections-dll_suite.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(check_collections_CPPFLAGS) $(CPPFLAGS) $(check_collections_CFLAGS) $(CFLAGS) -c -o check_collections-dll_suite.o `test -f 'dll_suite.c' || echo '$(srcdir)/'`dll_suite.c
-
-check_collections-dll_suite.obj: dll_suite.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(check_collections_CPPFLAGS) $(CPPFLAGS) $(check_collections_CFLAGS) $(CFLAGS) -MT check_collections-dll_suite.obj -MD -MP -MF $(DEPDIR)/check_collections-dll_suite.Tpo -c -o check_collections-dll_suite.obj `if test -f 'dll_suite.c'; then $(CYGPATH_W) 'dll_suite.c'; else $(CYGPATH_W) '$(srcdir)/dll_suite.c'; fi`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/check_collections-dll_suite.Tpo $(DEPDIR)/check_collections-dll_suite.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='dll_suite.c' object='check_collections-dll_suite.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(check_collections_CPPFLAGS) $(CPPFLAGS) $(check_collections_CFLAGS) $(CFLAGS) -c -o check_collections-dll_suite.obj `if test -f 'dll_suite.c'; then $(CYGPATH_W) 'dll_suite.c'; else $(CYGPATH_W) '$(srcdir)/dll_suite.c'; fi`
-
-check_collections-bt_suite.o: bt_suite.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(check_collections_CPPFLAGS) $(CPPFLAGS) $(check_collections_CFLAGS) $(CFLAGS) -MT check_collections-bt_suite.o -MD -MP -MF $(DEPDIR)/check_collections-bt_suite.Tpo -c -o check_collections-bt_suite.o `test -f 'bt_suite.c' || echo '$(srcdir)/'`bt_suite.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/check_collections-bt_suite.Tpo $(DEPDIR)/check_collections-bt_suite.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='bt_suite.c' object='check_collections-bt_suite.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(check_collections_CPPFLAGS) $(CPPFLAGS) $(check_collections_CFLAGS) $(CFLAGS) -c -o check_collections-bt_suite.o `test -f 'bt_suite.c' || echo '$(srcdir)/'`bt_suite.c
-
-check_collections-bt_suite.obj: bt_suite.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(check_collections_CPPFLAGS) $(CPPFLAGS) $(check_collections_CFLAGS) $(CFLAGS) -MT check_collections-bt_suite.obj -MD -MP -MF $(DEPDIR)/check_collections-bt_suite.Tpo -c -o check_collections-bt_suite.obj `if test -f 'bt_suite.c'; then $(CYGPATH_W) 'bt_suite.c'; else $(CYGPATH_W) '$(srcdir)/bt_suite.c'; fi`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/check_collections-bt_suite.Tpo $(DEPDIR)/check_collections-bt_suite.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='bt_suite.c' object='check_collections-bt_suite.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(check_collections_CPPFLAGS) $(CPPFLAGS) $(check_collections_CFLAGS) $(CFLAGS) -c -o check_collections-bt_suite.obj `if test -f 'bt_suite.c'; then $(CYGPATH_W) 'bt_suite.c'; else $(CYGPATH_W) '$(srcdir)/bt_suite.c'; fi`
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(check_glcollections_CPPFLAGS) $(CPPFLAGS) $(check_glcollections_CFLAGS) $(CFLAGS) -c -o check_glcollections-gldll_suite.obj `if test -f 'gldll_suite.c'; then $(CYGPATH_W) 'gldll_suite.c'; else $(CYGPATH_W) '$(srcdir)/gldll_suite.c'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -858,9 +823,9 @@ recheck: all $(check_PROGRAMS)
 	        am__force_recheck=am--force-recheck \
 	        TEST_LOGS="$$log_list"; \
 	exit $$?
-check_collections.log: check_collections$(EXEEXT)
-	@p='check_collections$(EXEEXT)'; \
-	b='check_collections'; \
+check_glcollections.log: check_glcollections$(EXEEXT)
+	@p='check_glcollections$(EXEEXT)'; \
+	b='check_glcollections'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
@@ -958,10 +923,8 @@ clean-am: clean-checkPROGRAMS clean-generic clean-libtool \
 	mostlyclean-am
 
 distclean: distclean-am
-		-rm -f ./$(DEPDIR)/check_collections-bt_suite.Po
-	-rm -f ./$(DEPDIR)/check_collections-check_collections.Po
-	-rm -f ./$(DEPDIR)/check_collections-dll_suite.Po
-	-rm -f ./$(DEPDIR)/check_collections-ll_suite.Po
+		-rm -f ./$(DEPDIR)/check_glcollections-check_glcollections.Po
+	-rm -f ./$(DEPDIR)/check_glcollections-gldll_suite.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -1007,10 +970,8 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-		-rm -f ./$(DEPDIR)/check_collections-bt_suite.Po
-	-rm -f ./$(DEPDIR)/check_collections-check_collections.Po
-	-rm -f ./$(DEPDIR)/check_collections-dll_suite.Po
-	-rm -f ./$(DEPDIR)/check_collections-ll_suite.Po
+		-rm -f ./$(DEPDIR)/check_glcollections-check_glcollections.Po
+	-rm -f ./$(DEPDIR)/check_glcollections-gldll_suite.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

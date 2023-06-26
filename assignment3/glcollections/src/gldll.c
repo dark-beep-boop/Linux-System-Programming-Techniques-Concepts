@@ -63,3 +63,11 @@ gldll_destroy(gldll_t *self)
     free(self);
   }
 }
+
+bool
+gldll_is_empty(const gldll_t *self)
+{
+  assert(self);
+
+  return self->head == NULL;
+}

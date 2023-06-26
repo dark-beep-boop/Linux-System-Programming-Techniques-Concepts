@@ -5,7 +5,7 @@ START_TEST(test_gldll_new)
 {
   gldll_t *gldll = NULL;
 
-  ck_assert_ptr_eq(gldll = gldll_new(), NULL);
+  ck_assert_ptr_ne(gldll = gldll_new(), NULL);
   ck_assert(gldll_is_empty(gldll));
   gldll_destroy(gldll);
 
