@@ -132,7 +132,7 @@ emp_print(emp_t *self)
 
 convert_to_container_func(emp_t, glnode, gldll_node_t)
 
-/*Implement the below function*/
+/* Implement the below function */
 void
 emp_print_contents(gldll_node_t *node)
 {

@@ -18,7 +18,7 @@ main(void)
   emp_set_designation(emp, "HR");
   emp_set_id(emp, 21);
 
-  /*Invoking fn to print employee details*/
+  /* Invoking fn to print employee details, implemented in emp.c */
   emp_print_contents(&emp->glnode);
 
   retval = EXIT_SUCCESS;
