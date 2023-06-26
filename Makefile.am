@@ -1,2 +1,2 @@
-SUBDIRS = task1
+SUBDIRS = assignment1
 ACLOCAL_AMFLAGS = -I m4
