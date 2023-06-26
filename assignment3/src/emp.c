@@ -1,7 +1,7 @@
 #include "emp.h"
 #include "defines.h"
 #include "gldll.h"
-#include "offset_of.h"
+#include "container.h"
 #include <assert.h>
 #include <stdbool.h>
 #include <stdint.h>
@@ -130,11 +130,13 @@ emp_print(emp_t *self)
   printf("emp_id = %u\n", self->emp_id);
 }
 
+convert_to_container_func(emp_t, glnode, gldll_node_t)
+
 /*Implement the below function*/
 void
 emp_print_contents(gldll_node_t *node)
 {
   assert(node);
 
-  emp_print(container_of(node, emp_t, glnode));
+  emp_print(gldll_node_t_to_emp_t(node));
 }
