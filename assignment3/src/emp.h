@@ -28,7 +28,8 @@ const char *emp_get_name(const emp_t *self);
 unsigned int emp_get_salary(const emp_t *self);
 const char *emp_get_designation(const emp_t *self);
 unsigned int emp_get_id(const emp_t *self);
-void emp_print(emp_t *self);
-void emp_print_contents(gldll_node_t *node);
+void emp_print(const emp_t *self);
+void emp_print_contents(const gldll_node_t *node);
+gldll_node_t *emp_get_glnode(emp_t *self);
 
 #endif /* EMP_H */

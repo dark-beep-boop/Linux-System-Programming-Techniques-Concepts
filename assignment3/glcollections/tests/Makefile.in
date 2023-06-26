@@ -104,7 +104,8 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am_check_glcollections_OBJECTS =  \
 	check_glcollections-check_glcollections.$(OBJEXT) \
-	check_glcollections-gldll_suite.$(OBJEXT)
+	check_glcollections-gldll_suite.$(OBJEXT) \
+	check_glcollections-emp.$(OBJEXT)
 check_glcollections_OBJECTS = $(am_check_glcollections_OBJECTS)
 check_glcollections_DEPENDENCIES =  \
 	$(top_builddir)/src/libglcollections.la
@@ -133,6 +134,7 @@ depcomp = $(SHELL) $(top_srcdir)/../../depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade =  \
 	./$(DEPDIR)/check_glcollections-check_glcollections.Po \
+	./$(DEPDIR)/check_glcollections-emp.Po \
 	./$(DEPDIR)/check_glcollections-gldll_suite.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
@@ -508,7 +510,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 check_glcollections_SOURCES = check_glcollections.c\
-														gldll_suite.c gldll_suite.h
+														gldll_suite.c gldll_suite.h emp.c emp.h
 
 check_glcollections_CPPFLAGS = -I$(top_srcdir)/src
 check_glcollections_CFLAGS = @CHECK_CFLAGS@
@@ -567,6 +569,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/check_glcollections-check_glcollections.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/check_glcollections-emp.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/check_glcollections-gldll_suite.Po@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
@@ -623,6 +626,20 @@ check_glcollections-gldll_suite.obj: gldll_suite.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gldll_suite.c' object='check_glcollections-gldll_suite.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(check_glcollections_CPPFLAGS) $(CPPFLAGS) $(check_glcollections_CFLAGS) $(CFLAGS) -c -o check_glcollections-gldll_suite.obj `if test -f 'gldll_suite.c'; then $(CYGPATH_W) 'gldll_suite.c'; else $(CYGPATH_W) '$(srcdir)/gldll_suite.c'; fi`
+
+check_glcollections-emp.o: emp.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(check_glcollections_CPPFLAGS) $(CPPFLAGS) $(check_glcollections_CFLAGS) $(CFLAGS) -MT check_glcollections-emp.o -MD -MP -MF $(DEPDIR)/check_glcollections-emp.Tpo -c -o check_glcollections-emp.o `test -f 'emp.c' || echo '$(srcdir)/'`emp.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/check_glcollections-emp.Tpo $(DEPDIR)/check_glcollections-emp.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='emp.c' object='check_glcollections-emp.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(check_glcollections_CPPFLAGS) $(CPPFLAGS) $(check_glcollections_CFLAGS) $(CFLAGS) -c -o check_glcollections-emp.o `test -f 'emp.c' || echo '$(srcdir)/'`emp.c
+
+check_glcollections-emp.obj: emp.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(check_glcollections_CPPFLAGS) $(CPPFLAGS) $(check_glcollections_CFLAGS) $(CFLAGS) -MT check_glcollections-emp.obj -MD -MP -MF $(DEPDIR)/check_glcollections-emp.Tpo -c -o check_glcollections-emp.obj `if test -f 'emp.c'; then $(CYGPATH_W) 'emp.c'; else $(CYGPATH_W) '$(srcdir)/emp.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/check_glcollections-emp.Tpo $(DEPDIR)/check_glcollections-emp.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='emp.c' object='check_glcollections-emp.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(check_glcollections_CPPFLAGS) $(CPPFLAGS) $(check_glcollections_CFLAGS) $(CFLAGS) -c -o check_glcollections-emp.obj `if test -f 'emp.c'; then $(CYGPATH_W) 'emp.c'; else $(CYGPATH_W) '$(srcdir)/emp.c'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -924,6 +941,7 @@ clean-am: clean-checkPROGRAMS clean-generic clean-libtool \
 
 distclean: distclean-am
 		-rm -f ./$(DEPDIR)/check_glcollections-check_glcollections.Po
+	-rm -f ./$(DEPDIR)/check_glcollections-emp.Po
 	-rm -f ./$(DEPDIR)/check_glcollections-gldll_suite.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
@@ -971,6 +989,7 @@ installcheck-am:
 
 maintainer-clean: maintainer-clean-am
 		-rm -f ./$(DEPDIR)/check_glcollections-check_glcollections.Po
+	-rm -f ./$(DEPDIR)/check_glcollections-emp.Po
 	-rm -f ./$(DEPDIR)/check_glcollections-gldll_suite.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic

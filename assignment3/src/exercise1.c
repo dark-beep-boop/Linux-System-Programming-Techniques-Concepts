@@ -19,7 +19,7 @@ main(void)
   emp_set_id(emp, 21);
 
   /* Invoking fn to print employee details, implemented in emp.c */
-  emp_print_contents(&emp->glnode);
+  emp_print_contents(emp_get_glnode(emp));
 
   retval = EXIT_SUCCESS;
 

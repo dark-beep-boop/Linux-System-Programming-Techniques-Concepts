@@ -24,6 +24,8 @@ bool gldll_init(gldll_t *self);
 void gldll_finalize(gldll_t *self);
 gldll_t *gldll_new(void);
 void gldll_destroy(gldll_t *self);
+void gldll_push_head(gldll_t *self, gldll_node_t *node);
+gldll_node_t *gldll_pop_head(gldll_t *self);
 bool gldll_is_empty(const gldll_t *self);
 
 #endif /* GLDLL_H */

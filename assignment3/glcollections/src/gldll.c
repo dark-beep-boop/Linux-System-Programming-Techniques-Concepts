@@ -34,6 +34,9 @@ void
 gldll_finalize(gldll_t *self)
 {
   assert(self);
+
+  while (!gldll_is_empty(self))
+    gldll_pop_head(self);
 }
 
 gldll_t *
@@ -70,4 +73,36 @@ gldll_is_empty(const gldll_t *self)
   assert(self);
 
   return self->head == NULL;
+}
+
+void
+gldll_push_head(gldll_t *self, gldll_node_t *node)
+{
+  assert(self);
+  assert(node);
+
+  if (self->head) {
+    node->right = self->head;
+    self->head->left = node;
+  }
+  self->head = node;
+}
+
+gldll_node_t *
+gldll_pop_head(gldll_t *self)
+{
+  assert(self);
+
+  gldll_node_t *node = NULL;
+
+  if (self->head) {
+    node = self->head;
+    self->head = node->right;
+    if (self->head) {
+      self->head->left = NULL;
+      node->right = NULL;
+    }
+  }
+
+  return node;
 }
