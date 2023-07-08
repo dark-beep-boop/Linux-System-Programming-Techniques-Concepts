@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+/* Exercise 1 */
 void
 print_bit_pattern(uint32_t n)
 {
@@ -24,6 +25,7 @@ print_bit_pattern(uint32_t n)
   }
 }
 
+/* Exercise 7 */
 uint8_t
 count_bit_set(uint32_t n)
 {
@@ -38,6 +40,7 @@ count_bit_set(uint32_t n)
   return count;
 }
 
+/* Exercise 8 */
 uint32_t
 rotate_right(uint32_t n, uint8_t k)
 {
@@ -46,6 +49,7 @@ rotate_right(uint32_t n, uint8_t k)
   return n >> (k % word) | n << (word - (k % word));
 }
 
+/* Extra exercise */
 uint32_t
 rotate_left(uint32_t n, uint8_t k)
 {
@@ -54,6 +58,7 @@ rotate_left(uint32_t n, uint8_t k)
   return n << (k % word) | n >> (word - (k % word));
 }
 
+/* Exercise 9 */
 void
 print_address_bit_pattern(const char *addr)
 {
@@ -100,6 +105,7 @@ fail:
   return;
 }
 
+/* Exercise 10 */
 uint32_t
 mask_bits(uint32_t n, uint8_t p, uint8_t q)
 {
@@ -113,6 +119,7 @@ mask_bits(uint32_t n, uint8_t p, uint8_t q)
   return n & (full_mask << p) & (full_mask >> (word - 1 - q));
 }
 
+/* Exercise 11 */
 bool
 is_power_of_two(uint32_t n)
 {
@@ -126,6 +133,7 @@ is_power_of_two(uint32_t n)
   return count < 2;
 }
 
+/* Extra exercise */
 uint32_t
 reverse_bits(uint32_t n)
 {
