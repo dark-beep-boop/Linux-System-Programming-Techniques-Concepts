@@ -8,5 +8,5 @@ AC_PROG_LIBTOOL
 AM_PROG_CC_C_O
 AC_HEADER_STDC
 AC_CONFIG_FILES([Makefile])
-AC_CONFIG_SUBDIRS([assignment1 assignment2 assignment3])
+AC_CONFIG_SUBDIRS([assignment1 assignment2 assignment3 assignment5])
 AC_OUTPUT
