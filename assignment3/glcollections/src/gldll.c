@@ -20,6 +20,19 @@ gldll_node_finalize(gldll_node_t *self)
   assert(self);
 }
 
+gldll_node_t *
+gldll_node_remove(gldll_node_t *node)
+{
+  assert(node);
+
+  if (node->left)
+    node->left->right = node->right;
+  if (node->right)
+    node->right->left = node->left;
+
+  return node;
+}
+
 bool
 gldll_init(gldll_t *self)
 {
