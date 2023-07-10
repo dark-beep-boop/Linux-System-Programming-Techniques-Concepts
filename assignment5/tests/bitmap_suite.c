@@ -24,7 +24,7 @@ START_TEST(test_bitmap_set_then_unset)
   bitmap_set_bit(bitmap, 0);
   ck_assert_int_eq(bitmap_is_bit_set(bitmap, 0), true);
   ck_assert_int_eq(bitmap_is_bit_set(bitmap, 1), false);
-  bitmap_unset_bit(bitmap, 1);
+  bitmap_unset_bit(bitmap, 0);
   ck_assert_int_eq(bitmap_is_bit_set(bitmap, 0), false);
   ck_assert_int_eq(bitmap_is_bit_set(bitmap, 1), false);
 
