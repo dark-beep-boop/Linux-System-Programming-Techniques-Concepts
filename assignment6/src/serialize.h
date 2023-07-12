@@ -8,7 +8,7 @@
 
 struct serializer_buffer
 {
-  void *b;
+  void *buffer;
   int size;
   int next;
   int checkpoint;
