@@ -21,5 +21,13 @@ void serializer_buffer_finalize(serializer_buffer_t *self);
 serializer_buffer_t *serializer_buffer_new(void);
 serializer_buffer_t *serializer_buffer_new_with_size(int size);
 void serializer_buffer_destroy(serializer_buffer_t *self);
+void serializer_buffer_serialize_string(
+  serializer_buffer_t *self,
+  const char *orig,
+  int len);
+void serializer_buffer_deserialize_string(
+  serializer_buffer_t *self,
+  char *dest,
+  int len);
 
 #endif /* SERIALIZE_H */

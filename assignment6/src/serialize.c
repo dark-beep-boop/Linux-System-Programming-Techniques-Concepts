@@ -78,3 +78,23 @@ serializer_buffer_destroy(serializer_buffer_t *self)
     free(self);
   }
 }
+
+void
+serializer_buffer_serialize_string(
+  serializer_buffer_t *self,
+  const char *string,
+  int len)
+{
+  assert(self);
+  assert(string);
+}
+
+void
+serializer_buffer_deserialize_string(
+  serializer_buffer_t *self,
+  char *dest,
+  int len)
+{
+  assert(self);
+  assert(dest);
+}
