@@ -132,9 +132,9 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(includedir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
-libbitmap_la_LIBADD =
-am_libbitmap_la_OBJECTS = bitmap.lo
-libbitmap_la_OBJECTS = $(am_libbitmap_la_OBJECTS)
+libserialize_la_LIBADD =
+am_libserialize_la_OBJECTS = serialize.lo
+libserialize_la_OBJECTS = $(am_libserialize_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
@@ -154,7 +154,7 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/../depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/bitmap.Plo
+am__depfiles_remade = ./$(DEPDIR)/serialize.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -174,8 +174,8 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(libbitmap_la_SOURCES)
-DIST_SOURCES = $(libbitmap_la_SOURCES)
+SOURCES = $(libserialize_la_SOURCES)
+DIST_SOURCES = $(libserialize_la_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -324,9 +324,9 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-lib_LTLIBRARIES = libbitmap.la
-libbitmap_la_SOURCES = bitmap.c bitmap.h defines.h
-include_HEADERS = bitmap.h
+lib_LTLIBRARIES = libserialize.la
+libserialize_la_SOURCES = serialize.c serialize.h defines.h
+include_HEADERS = serialize.h
 all: all-am
 
 .SUFFIXES:
@@ -396,8 +396,8 @@ clean-libLTLIBRARIES:
 	  rm -f $${locs}; \
 	}
 
-libbitmap.la: $(libbitmap_la_OBJECTS) $(libbitmap_la_DEPENDENCIES) $(EXTRA_libbitmap_la_DEPENDENCIES) 
-	$(AM_V_CCLD)$(LINK) -rpath $(libdir) $(libbitmap_la_OBJECTS) $(libbitmap_la_LIBADD) $(LIBS)
+libserialize.la: $(libserialize_la_OBJECTS) $(libserialize_la_DEPENDENCIES) $(EXTRA_libserialize_la_DEPENDENCIES) 
+	$(AM_V_CCLD)$(LINK) -rpath $(libdir) $(libserialize_la_OBJECTS) $(libserialize_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -405,7 +405,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/bitmap.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/serialize.Plo@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -589,7 +589,7 @@ clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
 	mostlyclean-am
 
 distclean: distclean-am
-		-rm -f ./$(DEPDIR)/bitmap.Plo
+		-rm -f ./$(DEPDIR)/serialize.Plo
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -635,7 +635,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-		-rm -f ./$(DEPDIR)/bitmap.Plo
+		-rm -f ./$(DEPDIR)/serialize.Plo
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
