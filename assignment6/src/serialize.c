@@ -1,6 +1,7 @@
 #include "serialize.h"
 #include "defines.h"
 #include <assert.h>
+#include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -79,7 +80,13 @@ serializer_buffer_destroy(serializer_buffer_t *self)
   }
 }
 
-void
+bool
+serializer_buffer_is_empty(const serializer_buffer_t *self)
+{
+  return self->next == 0;
+}
+
+bool
 serializer_buffer_serialize_string(
   serializer_buffer_t *self,
   const char *string,
@@ -87,9 +94,22 @@ serializer_buffer_serialize_string(
 {
   assert(self);
   assert(string);
+
+  while (self->size < self->next + len) {
+    REALLOCATE_MANY_FAIL(self->buffer, char, self->size * 2);
+    self->size *= 2;
+  }
+
+  memcpy(self->buffer + self->next, string, len);
+  self->next += len;
+
+  return true;
+
+fail:
+  return false;
 }
 
-void
+bool
 serializer_buffer_deserialize_string(
   serializer_buffer_t *self,
   char *dest,
@@ -97,4 +117,60 @@ serializer_buffer_deserialize_string(
 {
   assert(self);
   assert(dest);
+
+  bool ok = self->next + len <= self->size;
+
+  if (ok) {
+    memcpy(dest, self->buffer + self->next, len);
+    self->next += len;
+  }
+
+  return ok;
+}
+
+bool
+serializer_buffer_copy_by_offset(
+  serializer_buffer_t *self,
+  int offset,
+  const char *orig,
+  int len)
+{
+  assert(self);
+  assert(orig);
+
+  bool ok = offset + len <= self->size;
+
+  if (ok)
+    memcpy(self->buffer + offset, orig, len);
+
+  return ok;
+}
+
+void
+serializer_buffer_mark_checkpoint(serializer_buffer_t *self)
+{
+  assert(self);
+
+  self->checkpoint = self->next;
+}
+
+int
+serializer_buffer_get_checkpoint(const serializer_buffer_t *self)
+{
+  assert(self);
+
+  return self->checkpoint;
+}
+
+bool
+serializer_buffer_skip(serializer_buffer_t *self, int skip)
+{
+  assert(self);
+
+  bool ok = 0 <= self->next + skip && self->next + skip <= self->size;
+
+  if (ok)
+    self->next += skip;
+
+  return ok;
 }
