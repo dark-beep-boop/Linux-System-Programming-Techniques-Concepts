@@ -167,10 +167,18 @@ serializer_buffer_skip(serializer_buffer_t *self, int skip)
 {
   assert(self);
 
-  bool ok = 0 <= self->next + skip && self->next + skip <= self->size;
+  bool ok = 0 <= self->next + skip;
 
-  if (ok)
+  if (ok) {
+    while (self->size < self->next + skip) {
+      REALLOCATE_MANY_FAIL(self->buffer, char, self->size * 2);
+      self->size *= 2;
+    }
     self->next += skip;
+  }
 
   return ok;
+
+fail:
+  return false;
 }

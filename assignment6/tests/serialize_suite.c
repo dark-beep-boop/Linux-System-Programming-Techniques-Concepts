@@ -57,7 +57,7 @@ START_TEST(test_serialize_string)
   ck_assert(serializer_buffer_serialize_string(buffer, "hell", 5));
   ck_assert_str_eq("hell", buffer->buffer);
   ck_assert_int_eq(5, buffer->next);
-  ck_assert_int_lt(5, buffer->size);
+  ck_assert_int_le(5, buffer->size);
 
   serializer_buffer_destroy(buffer);
 }
@@ -72,7 +72,7 @@ START_TEST(test_serialize_string_bigger_than_the_buffer)
     serializer_buffer_serialize_string(buffer, "hello, this is hell", 20));
   ck_assert_str_eq("hello, this is hell", buffer->buffer);
   ck_assert_int_eq(20, buffer->next);
-  ck_assert_int_lt(20, buffer->size);
+  ck_assert_int_le(20, buffer->size);
 
   serializer_buffer_destroy(buffer);
 }
@@ -86,11 +86,11 @@ START_TEST(test_serialize_2_strings)
   ck_assert(serializer_buffer_serialize_string(buffer, "hello", 5));
   ck_assert_str_eq("hello", buffer->buffer);
   ck_assert_int_eq(5, buffer->next);
-  ck_assert_int_lt(5, buffer->size);
+  ck_assert_int_le(5, buffer->size);
   ck_assert(serializer_buffer_serialize_string(buffer, ", this is hell", 15));
   ck_assert_str_eq("hello, this is hell", buffer->buffer);
   ck_assert_int_eq(20, buffer->next);
-  ck_assert_int_lt(20, buffer->size);
+  ck_assert_int_le(20, buffer->size);
 
   serializer_buffer_destroy(buffer);
 }
@@ -199,14 +199,14 @@ START_TEST(test_serialize_mark_checkpoint_then_serialize)
   ck_assert_ptr_ne(buffer = serializer_buffer_new(), NULL);
   ck_assert(serializer_buffer_serialize_string(buffer, "hell", 4));
   ck_assert_int_eq(4, buffer->next);
-  ck_assert_int_lt(4, buffer->size);
+  ck_assert_int_le(4, buffer->size);
   ck_assert_str_eq("hell", buffer->buffer);
   serializer_buffer_mark_checkpoint(buffer);
   ck_assert_int_eq(4, buffer->checkpoint);
   ck_assert_int_eq(4, serializer_buffer_get_checkpoint(buffer));
   ck_assert(serializer_buffer_serialize_string(buffer, "o, this is hell", 16));
   ck_assert_int_eq(20, buffer->next);
-  ck_assert_int_lt(20, buffer->size);
+  ck_assert_int_le(20, buffer->size);
   ck_assert_str_eq("hello, this is hell", buffer->buffer);
   ck_assert_int_eq(4, buffer->checkpoint);
   ck_assert_int_eq(4, serializer_buffer_get_checkpoint(buffer));
@@ -224,19 +224,19 @@ START_TEST(test_skip_backwards_then_forwards_then_deserialize)
   ck_assert(
     serializer_buffer_serialize_string(buffer, "hello, this is hell", 20));
   ck_assert_int_eq(20, buffer->next);
-  ck_assert_int_lt(20, buffer->size);
+  ck_assert_int_le(20, buffer->size);
   ck_assert_str_eq("hello, this is hell", buffer->buffer);
   ck_assert(serializer_buffer_skip(buffer, -10));
   ck_assert_int_eq(10, buffer->next);
-  ck_assert_int_lt(20, buffer->size);
+  ck_assert_int_le(20, buffer->size);
   ck_assert_str_eq("hello, this is hell", buffer->buffer);
   ck_assert(serializer_buffer_skip(buffer, 2));
   ck_assert_int_eq(12, buffer->next);
-  ck_assert_int_lt(20, buffer->size);
+  ck_assert_int_le(20, buffer->size);
   ck_assert_str_eq("hello, this is hell", buffer->buffer);
   ck_assert(serializer_buffer_deserialize_string(buffer, dest, 8));
   ck_assert_int_eq(20, buffer->next);
-  ck_assert_int_lt(20, buffer->size);
+  ck_assert_int_le(20, buffer->size);
   ck_assert_str_eq("hello, this is hell", buffer->buffer);
   ck_assert_str_eq("is hell", dest);
 
@@ -262,8 +262,9 @@ START_TEST(test_skip_forwards_beyond_buffer_size)
   serializer_buffer_t *buffer = NULL;
 
   ck_assert_ptr_ne(buffer = serializer_buffer_new_with_size(5), NULL);
-  ck_assert(!serializer_buffer_skip(buffer, 10));
-  ck_assert_int_eq(0, buffer->next);
+  ck_assert(serializer_buffer_skip(buffer, 10));
+  ck_assert_int_le(10, buffer->size);
+  ck_assert_int_eq(10, buffer->next);
   ck_assert_str_eq("", buffer->buffer);
 
   serializer_buffer_destroy(buffer);
